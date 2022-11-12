@@ -24,9 +24,16 @@ export const fetchCountry = async name => {
   return country[0];
 };
 
-export const fetchByRegion = async region => {
-  const { data } = await axios.get(`/region/${region}`);
-  const countries = transformCountriesData(data);
+export const fetchByRegion = async (region, signal) => {
+  try {
+    const { data } = await axios.get(`/region/${region}`, { signal });
+    const countries = transformCountriesData(data);
 
-  return countries;
+    return countries;
+  } catch (error) {
+    if (axios.isCancel) {
+      return [];
+    }
+    throw new Error(error);
+  }
 };
