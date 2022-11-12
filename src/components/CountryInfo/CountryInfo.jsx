@@ -13,31 +13,32 @@ export const CountryInfo = ({
   flag,
   capital,
   country,
-  id,
+  // id,
   languages = [],
   population,
 }) => {
+  const languageCountry = Object.values(languages).join(', ');
+
   return (
-    <h2>CountryInfo</h2>
-    // <CountryWrapper >
-    //   <Flag>
-    //     <Image />
-    //   </Flag>
-    //   <CountryDescription>
-    //     <CountryCapital>
-    //       Capital: <Accent></Accent>
-    //     </CountryCapital>
+    <CountryWrapper>
+      <Flag>
+        <Image src={flag} />
+      </Flag>
+      <CountryDescription>
+        <CountryCapital>
+          Capital: <Accent>{capital}</Accent>
+        </CountryCapital>
 
-    //     <CountryTitle></CountryTitle>
+        <CountryTitle>{country}</CountryTitle>
 
-    //     <CountryDetail>
-    //       Population: <Accent></Accent>
-    //     </CountryDetail>
+        <CountryDetail>
+          Population: <Accent>{population}</Accent>
+        </CountryDetail>
 
-    //     <CountryDetail>
-    //       Languages: <Accent></Accent>
-    //     </CountryDetail>
-    //   </CountryDescription>
-    // </CountryWrapper>
+        <CountryDetail>
+          Languages: <Accent>{languageCountry}</Accent>
+        </CountryDetail>
+      </CountryDescription>
+    </CountryWrapper>
   );
 };
